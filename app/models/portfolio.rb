@@ -12,7 +12,8 @@ class Portfolio < ApplicationRecord
   after_create :create_my_qr_code
 
   def create_my_qr_code
-    qr = RQRCode::QRCode.new("http://localhost:3000/portfolios/#{self.id}")
+    base_url = Rails.application.routes.url_helpers.root_url
+    qr = RQRCode::QRCode.new("#{base_url}portfolios/#{self.id}")
     svg = qr.as_svg(
       offset: 4,
       color: '000',
