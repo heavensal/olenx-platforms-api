@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    sessions: "users/sessions",
+    registrations: "users/registrations"
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,23 +14,21 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-
-      resources :portfolios, only: [:index, :show] do
-        resources :projects, only: [:index, :show]
-        resources :ideas, only: [:index, :show]
+      resources :portfolios, only: [ :index, :show ] do
+        resources :projects, only: [ :index, :show ]
+        resources :ideas, only: [ :index, :show ]
       end
 
-      resource :portfolio, only: [:show, :update] do
-        resources :projects, only: [:index, :create, :show, :update, :destroy]
-        resources :ideas, only: [:index, :create, :show, :update, :destroy]
+      resource :portfolio, only: [ :show, :update ] do
+        resources :projects, only: [ :index, :create, :show, :update, :destroy ]
+        resources :ideas, only: [ :index, :create, :show, :update, :destroy ]
       end
 
-      resources :projects, only: [:index, :show]
+      resources :projects, only: [ :index, :show ]
 
-      resources :ideas, only: [:index, :show] do
-        resources :reactions, only: [:create, :update, :destroy]
+      resources :ideas, only: [ :index, :show ] do
+        resources :reactions, only: [ :create, :update, :destroy ]
       end
-
     end
   end
 end

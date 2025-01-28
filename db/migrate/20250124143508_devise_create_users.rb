@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.0]
 
       t.timestamps null: false
 
-      #admin
+      # admin
       t.string :role, default: "user", null: false
     end
 

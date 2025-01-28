@@ -4,5 +4,5 @@ class Reaction < ApplicationRecord
 
   validates reaction_type, presence: true
   validates :user_id, uniqueness: { scope: :idea_id }
-  validates :reaction_type, inclusion: { in: %w(like dislike) }
+  validates :reaction_type, inclusion: { in: %w[like dislike] }
 end

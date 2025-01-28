@@ -1,5 +1,5 @@
 class Api::V1::PortfoliosController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
   def index
     @portfolios = Portfolio.all
     render json: @portfolios

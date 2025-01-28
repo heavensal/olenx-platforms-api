@@ -1,5 +1,4 @@
 class Idea < ApplicationRecord
-
   has_one_attached :avatar
   has_one_attached :qr_code
 
@@ -7,5 +6,4 @@ class Idea < ApplicationRecord
   belongs_to :user
 
   has_many :reactions, dependent: :destroy
-
 end

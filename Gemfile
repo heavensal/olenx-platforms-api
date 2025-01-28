@@ -46,18 +46,18 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # fichiers de variables d'environnement
-  gem 'dotenv', '~> 3.1', '>= 3.1.7'
+  gem "dotenv", "~> 3.1", ">= 3.1.7"
 
   # Tests
-  gem 'rspec-rails', '~> 7.1'
+  gem "rspec-rails", "~> 7.1"
 end
 
 # pour les utilisateurs
-gem 'devise', '~> 4.9'
-gem 'devise-jwt'
+gem "devise", "~> 4.9"
+gem "devise-jwt"
 
 # pour les images avec active storage et cloudinary, qr codes et images
-gem 'cloudinary'
+gem "cloudinary"
 
 # pour les qrcode
-gem 'rqrcode'
+gem "rqrcode"

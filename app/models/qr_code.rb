@@ -1,6 +1,5 @@
 class QrCode < ApplicationRecord
   belongs_to :user
-  belong_to :idea
-  belong_to :project
-
+  belongs_to :idea
+  belongs_to :project
 end

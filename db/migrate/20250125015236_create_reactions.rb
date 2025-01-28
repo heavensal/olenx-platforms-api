@@ -5,7 +5,7 @@ class CreateReactions < ActiveRecord::Migration[8.0]
       t.references :idea, null: false, foreign_key: true
       t.string :reaction_type, null: false, default: "like"
       # combo -> unique combination of user_id and idea_id and like
-      t.index [:user_id, :idea_id], unique: true
+      t.index [ :user_id, :idea_id ], unique: true
 
 
       t.timestamps
