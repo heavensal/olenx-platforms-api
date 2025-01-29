@@ -7,6 +7,5 @@ class Api::V1::PortfoliosController < ApplicationController
 
   def show
     @portfolio = Portfolio.find(params[:id])
-    render json: @portfolio
   end
 end

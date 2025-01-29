@@ -61,3 +61,4 @@ gem "cloudinary"
 
 # pour les qrcode
 gem "rqrcode"
+gem "chunky_png"

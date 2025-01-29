@@ -1,10 +1,14 @@
-json.portfolio @portfolio do
+json.portfolio do
   json.id @portfolio.id
-  json.name @portfolio.name
+  json.company_name @portfolio.company_name
   json.description @portfolio.description
-  if @portfolio.qr_code.attached?
-    json.qr_code @portfolio.qr_code.url
-  # Add other portfolio attributes as needed
+  json.qr_code cloudinary_url(@portfolio.qr_code.key)
+
+
+  json.user do
+    json.id @portfolio.user.id
+    json.email @portfolio.user.email
+  end
 end
 
 # json.projects @projects do |project|

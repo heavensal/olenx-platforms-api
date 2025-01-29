@@ -224,7 +224,7 @@ GEM
     psych (5.2.3)
       date
       stringio
-    puma (6.5.0)
+    puma (6.6.0)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
@@ -393,6 +393,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  chunky_png
   cloudinary
   debug
   devise (~> 4.9)
@@ -412,9 +413,6 @@ DEPENDENCIES
   solid_queue
   thruster
   tzinfo-data
-
-RUBY VERSION
-   ruby 3.3.6p108
 
 BUNDLED WITH
    2.6.3
