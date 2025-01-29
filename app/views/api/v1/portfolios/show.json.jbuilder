@@ -3,8 +3,7 @@ json.portfolio @portfolio do
   json.name @portfolio.name
   json.description @portfolio.description
   if @portfolio.qr_code.attached?
-    json.qr_code_url url_for(@portfolio.qr_code)
-  end
+    json.qr_code @portfolio.qr_code.url
   # Add other portfolio attributes as needed
 end
 
