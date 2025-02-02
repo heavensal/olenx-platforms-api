@@ -11,5 +11,14 @@ class User < ApplicationRecord
   has_many :qr_codes, dependent: :destroy
   has_one :portfolio, dependent: :destroy
 
+  validates :email, presence: true, uniqueness: true
+
+
+
   after_create :create_portfolio
+
+  def admin?
+    role == "admin"
+  end
+
 end

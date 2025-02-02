@@ -22,10 +22,6 @@ Rails.application.routes.draw do
 
       # Protected routes - requires authentication
       namespace :me do
-        get "reactions/create"
-        get "reactions/update"
-        get "reactions/destroy"
-
         # Current user's portfolio management
         resource :portfolio, only: [ :show, :update ] do
           resources :projects, only: [ :index, :create, :show, :update, :destroy ]
@@ -35,6 +31,16 @@ Rails.application.routes.draw do
         # Current user's reactions to ideas
         resources :reactions, only: [ :create, :update, :destroy ]
 
+      end
+
+      namespace :admin do
+
+        # Admin-only routes
+        resources :users, only: [ :index, :show, :update, :destroy ]
+        resources :portfolios, only: [ :index, :show, :update ]
+        resources :projects, only: [ :index, :show, :update, :destroy ]
+        resources :ideas, only: [ :index, :show, :update, :destroy ]
+        resources :reactions, only: [ :index, :show, :update, :destroy ]
       end
 
     end

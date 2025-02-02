@@ -3,10 +3,13 @@ class Api::V1::ProjectsController < ApplicationController
   before_action :set_portfolio, only: [ :index, :show ]
 
   def index
+    params.permit(q: {})
+
     if @portfolio
       @projects = @portfolio.projects.with_attached_avatar
     else
-      @projects = Project.all.with_attached_avatar
+      @q = Project.ransack(params[:q])
+      @projects = @q.result(distinct: true).with_attached_avatar
     end
   end
 

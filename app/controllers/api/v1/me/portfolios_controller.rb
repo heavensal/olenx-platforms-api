@@ -1,6 +1,6 @@
 class Api::V1::Me::PortfoliosController < ApplicationController
-  before_action :set_portfolio, only: [ :show, :update ]
   before_action :authenticate_user!
+  before_action :set_portfolio, only: [ :show, :update ]
 
   def show
   end

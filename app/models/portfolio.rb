@@ -14,6 +14,14 @@ class Portfolio < ApplicationRecord
 
   after_create :create_my_qr_code
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[company_name description]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    []
+  end
+
   def create_my_qr_code
     if self.qr_code.attached?
       self.qr_code.purge

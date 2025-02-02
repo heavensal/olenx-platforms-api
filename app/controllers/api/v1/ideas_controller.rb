@@ -3,10 +3,13 @@ class Api::V1::IdeasController < ApplicationController
   before_action :set_portfolio, only: [ :index, :show ]
 
   def index
+    params.permit(q: {})
+
     if @portfolio
       @ideas = @portfolio.ideas.with_attached_avatar
     else
-      @ideas = Idea.all.with_attached_avatar
+      @q = Idea.ransack(params[:q])
+      @ideas = @q.result(distinct: true).with_attached_avatar
     end
   end
 

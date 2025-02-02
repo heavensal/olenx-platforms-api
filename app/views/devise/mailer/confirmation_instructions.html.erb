@@ -1,0 +1,41 @@
+<section class="text-center">
+  <img src="https://res.cloudinary.com/dmbigyamv/image/upload/v1738471638/olenx-platforms/fhzbjsmykd1e7afg4yd0.jpg", class="border-radius-24 w-50" />
+</section>
+
+<hr>
+
+<h1 class="text-center">
+  Bienvenue chez Olenx Platform <%= @email %>
+</h1>
+
+<hr>
+
+<section class="text-center">
+  <%= link_to 'Confirmer Mon Compte', confirmation_url(@resource, confirmation_token: @token), class: 'btn-primary' %>
+</section>
+
+<hr>
+
+<p class="text-center">
+  Vous avez reçu ce message parce que votre adresse e-mail a été enregistrée sur notre site. Veuillez cliquer sur le bouton ci-dessous pour vérifier votre adresse e-mail et confirmer que vous êtes le propriétaire de ce compte. 
+</p>
+
+<br>
+
+<p class="text-center">
+  Si vous ne vous êtes pas inscrit chez nous, veuillez ignorer cet e-mail.
+</p>
+
+<hr>
+
+<p class="text-center">
+  Une fois confirmé, cet email sera associé de manière unique à votre compte.
+</p>
+
+<footer class="text-center">
+  <p>
+    <em>
+      Olenx Platform &copy; <%= Time.now.year %> Tous droits réservés.
+    </em>
+  </p>
+</footer>

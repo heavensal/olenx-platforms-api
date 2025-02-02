@@ -4,4 +4,12 @@ class Project < ApplicationRecord
 
   belongs_to :portfolio
   belongs_to :user
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[title description]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    []
+  end
 end

@@ -14,6 +14,14 @@ class Idea < ApplicationRecord
   validates :portfolio_id, presence: true
   validates :user_id, presence: true
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[title description]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    []
+  end
+
   def likes_count
     likes.count
   end

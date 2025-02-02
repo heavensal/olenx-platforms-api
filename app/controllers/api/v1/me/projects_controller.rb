@@ -1,6 +1,6 @@
 class Api::V1::Me::ProjectsController < ApplicationController
-  before_action :set_project, only: [ :show, :update, :destroy ]
   before_action :authenticate_user!
+  before_action :set_project, only: [ :show, :update, :destroy ]
 
   def index
     @projects = current_user.projects.with_attached_avatar
