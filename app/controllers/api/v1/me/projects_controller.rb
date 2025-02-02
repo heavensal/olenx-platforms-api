@@ -26,6 +26,7 @@ class Api::V1::Me::ProjectsController < ApplicationController
       render :show, status: :ok
     else
       render json: @project.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

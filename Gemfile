@@ -50,6 +50,9 @@ group :development, :test do
 
   # Tests
   gem "rspec-rails", "~> 7.1"
+
+  # faker pour les tests
+  gem "faker"
 end
 
 # pour les utilisateurs
