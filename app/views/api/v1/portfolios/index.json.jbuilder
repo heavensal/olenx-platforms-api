@@ -1,4 +1,7 @@
 json.array! @portfolios do |portfolio|
-  json.extract! portfolio, :id, :name, :description, :created_at, :updated_at, :user_id, :avatar, :qr_code
-  json.portfolio_url api_v1_portfolio_url(portfolio, format: :json)
+  json.id portfolio.id
+  json.company_name portfolio.company_name
+  json.description portfolio.description
+  json.avatar portfolio.avatar.url
+  json.user_id portfolio.user_id
 end

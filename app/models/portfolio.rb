@@ -1,8 +1,8 @@
 class Portfolio < ApplicationRecord
   require "rqrcode"
 
-  BASE_URL = "https://olenx-platforms-api.onrender.com/api/v1" if Rails.env.production?
-  BASE_URL = "http://localhost:3000/api/v1" if Rails.env.development?
+  BASE_URL = "https://www.olenxplatforms.com" if Rails.env.production?
+  BASE_URL = "http://localhost:3000" if Rails.env.development?
 
   has_one_attached :avatar
   has_one_attached :qr_code
@@ -15,10 +15,13 @@ class Portfolio < ApplicationRecord
   after_create :create_my_qr_code
 
   def create_my_qr_code
-    qr = RQRCode::QRCode.new("#{BASE_URL}portfolios/#{self.id}")
+    if self.qr_code.attached?
+      self.qr_code.purge
+    end
+    qr = RQRCode::QRCode.new("#{BASE_URL}/portfolios/#{self.id}")
     png = qr.as_png(
       bit_depth: 1,
-      border_modules: 2,
+      border_modules: 0,
       color_mode: ChunkyPNG::COLOR_GRAYSCALE,
       color: "black",
       file: nil,

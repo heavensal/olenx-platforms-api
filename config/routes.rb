@@ -9,26 +9,35 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-
   namespace :api do
     namespace :v1 do
+
+      # Public routes - accessible to everyone
       resources :portfolios, only: [ :index, :show ] do
         resources :projects, only: [ :index, :show ]
         resources :ideas, only: [ :index, :show ]
       end
-
-      resource :portfolio, only: [ :show, :update ] do
-        resources :projects, only: [ :index, :create, :show, :update, :destroy ]
-        resources :ideas, only: [ :index, :create, :show, :update, :destroy ]
-      end
-
       resources :projects, only: [ :index, :show ]
+      resources :ideas, only: [ :index, :show ]
 
-      resources :ideas, only: [ :index, :show ] do
+      # Protected routes - requires authentication
+      namespace :me do
+        get "reactions/create"
+        get "reactions/update"
+        get "reactions/destroy"
+
+        # Current user's portfolio management
+        resource :portfolio, only: [ :show, :update ] do
+          resources :projects, only: [ :index, :create, :show, :update, :destroy ]
+          resources :ideas, only: [ :index, :create, :show, :update, :destroy ]
+        end
+
+        # Current user's reactions to ideas
         resources :reactions, only: [ :create, :update, :destroy ]
+
       end
+
     end
   end
+
 end

@@ -6,4 +6,19 @@ class Idea < ApplicationRecord
   belongs_to :user
 
   has_many :reactions, dependent: :destroy
+  has_many :likes, -> { where reaction_type: 'like' }, class_name: 'Reaction'
+  has_many :dislikes, -> { where reaction_type: 'dislike' }, class_name: 'Reaction'
+
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :portfolio_id, presence: true
+  validates :user_id, presence: true
+
+  def likes_count
+    likes.count
+  end
+
+  def dislikes_count
+    dislikes.count
+  end
 end

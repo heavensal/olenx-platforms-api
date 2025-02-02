@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable,
           :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
-  # has_many :ideas, dependent: :destroy
-  # has_many :projects, dependent: :destroy
-  # # has_many :reactions, dependent: :destroy
-  # has_many :qr_codes, dependent: :destroy
+  has_many :ideas, dependent: :destroy
+  has_many :projects, dependent: :destroy
+  has_many :reactions, dependent: :destroy
+  has_many :qr_codes, dependent: :destroy
   has_one :portfolio, dependent: :destroy
 
   after_create :create_portfolio
