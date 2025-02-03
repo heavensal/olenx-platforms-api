@@ -8,14 +8,21 @@ class ApplicationController < ActionController::API
   # toutes les actions qui nécessitent current_user doit être récupérer par nextjs
 
   def authenticate_user!
-    token = request.headers["Authorization"]&.split(" ")&.last
-    if token
-      decoded_token = JWT.decode(token, ENV["DEVISE_SECRET_KEY"], true, algorithm: "HS256")
-      @current_user = User.find(decoded_token.first["sub"])
+    if devise_controller?
+      super
     else
-      render json: { error: "User must be authenticated" }, status: :unauthorized
-    end
-
+      token = request.headers["Authorization"]&.split(" ")&.last
+      if token
+        begin
+          payload = JWT.decode(token, ENV["DEVISE_JWT_SECRET_KEY"], true, algorithm: "HS256")
+          @current_user = User.find(payload['user_id'])
+          render json: { user: @current_user }
+        rescue JWT::DecodeError
+          render json: { error: "Token invalide" }, status: :unauthorized
+        end
+      else
+        render json: { error: "Non autorisé" }, status: :unauthorized
+      end
   end
 
   private
