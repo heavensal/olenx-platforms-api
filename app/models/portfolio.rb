@@ -44,6 +44,7 @@ class Portfolio < ApplicationRecord
       io: StringIO.new(png.to_s),
       filename: "qr_code_portfolio_#{self.id}.png",
       content_type: "image/png",
+      identify: false,
       metadata: {
         title: "QR code for portfolio #{self.id}",
         alt: "QR code for portfolio #{self.id}"
