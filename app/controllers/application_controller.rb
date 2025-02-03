@@ -15,8 +15,7 @@ class ApplicationController < ActionController::API
       if token
         begin
           payload = JWT.decode(token, ENV["DEVISE_JWT_SECRET_KEY"], true, algorithm: "HS256")[0]
-          @current_user = User.find(payload['user_id'])
-          render json: { user: @current_user }
+          @current_user = User.find(payload['sub'])
         rescue JWT::DecodeError
           render json: { error: "Token invalide" }, status: :unauthorized
         end
