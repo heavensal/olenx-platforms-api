@@ -19,7 +19,7 @@ class Api::V1::Me::ReactionsController < ApplicationController
   end
 
   def destroy
-    @reaction = current_user.reactions.find(params[:id])
+    @reaction = @current_user.reactions.find(params[:id])
     if @reaction.destroy
       head :no_content
     else
@@ -34,8 +34,8 @@ class Api::V1::Me::ReactionsController < ApplicationController
   end
 
   def upsert_reaction
-    @reaction = current_user.reactions.find_or_initialize_by(idea_id: reaction_params[:idea_id])
+    @reaction = @current_user.reactions.find_or_initialize_by(idea_id: reaction_params[:idea_id])
     @reaction.reaction_type = reaction_params[:reaction_type]
-    @reaction.user = current_user
+    @reaction.user = @current_user
   end
 end

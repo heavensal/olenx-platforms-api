@@ -3,13 +3,13 @@ class Api::V1::Me::ProjectsController < ApplicationController
   before_action :set_project, only: [ :show, :update, :destroy ]
 
   def index
-    @projects = current_user.projects.with_attached_avatar
+    @projects = @current_user.projects.with_attached_avatar
   end
 
   def create
-    @project = current_user.projects.new(project_params)
-    @project.user = current_user
-    @project.portfolio = current_user.portfolio
+    @project = @current_user.projects.new(project_params)
+    @project.user = @current_user
+    @project.portfolio = @current_user.portfolio
 
     if @project.save
       render :show, status: :created
@@ -37,7 +37,7 @@ class Api::V1::Me::ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = current_user.projects.find(params[:id]).with_attached_avatar
+    @project = @current_user.projects.find(params[:id]).with_attached_avatar
   end
 
   def project_params

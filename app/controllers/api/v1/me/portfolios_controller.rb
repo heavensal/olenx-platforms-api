@@ -16,7 +16,7 @@ class Api::V1::Me::PortfoliosController < ApplicationController
   private
 
   def set_portfolio
-    @portfolio = current_user.portfolio.includes(:projects, :ideas).with_attached_avatar.with_attached_qr_code
+    @portfolio = @current_user.portfolio.includes(:projects, :ideas).with_attached_avatar.with_attached_qr_code
   end
 
   def portfolio_params

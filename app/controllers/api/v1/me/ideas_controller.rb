@@ -3,13 +3,13 @@ class Api::V1::Me::IdeasController < ApplicationController
   before_action :set_idea, only: [ :show, :update, :destroy ]
 
   def index
-    @ideas = current_user.ideas.with_attached_avatar
+    @ideas = @current_user.ideas.with_attached_avatar
   end
 
   def create
-    @idea = current_user.ideas.new(idea_params)
-    @idea.portfolio = current_user.portfolio
-    @idea.user = current_user
+    @idea = @current_user.ideas.new(idea_params)
+    @idea.portfolio = @current_user.portfolio
+    @idea.user = @current_user
 
     if @idea.save
       render :show, status: :created
@@ -37,7 +37,7 @@ class Api::V1::Me::IdeasController < ApplicationController
   private
 
   def set_idea
-    @idea = current_user.ideas.find(params[:id]).with_attached_avatar
+    @idea = @current_user.ideas.find(params[:id]).with_attached_avatar
   end
 
   def idea_params
