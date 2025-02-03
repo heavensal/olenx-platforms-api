@@ -23,6 +23,7 @@ class ApplicationController < ActionController::API
       else
         render json: { error: "Non autorisé" }, status: :unauthorized
       end
+    end
   end
 
   private
