@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
       token = request.headers["Authorization"]&.split(" ")&.last
       if token
         begin
-          payload = JWT.decode(token, ENV["DEVISE_JWT_SECRET_KEY"], true, algorithm: "HS256")
+          payload = JWT.decode(token, ENV["DEVISE_JWT_SECRET_KEY"], true, algorithm: "HS256")[0]
           @current_user = User.find(payload['user_id'])
           render json: { user: @current_user }
         rescue JWT::DecodeError
