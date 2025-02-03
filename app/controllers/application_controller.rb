@@ -9,8 +9,13 @@ class ApplicationController < ActionController::API
 
   def authenticate_user!
     token = request.headers["Authorization"]&.split(" ")&.last
-    decoded_token = JWT.decode(token, ENV["DEVISE_SECRET_KEY"], true, algorithm: "HS256")
-    @current_user = User.find(decoded_token.first["sub"])
+    if token
+      decoded_token = JWT.decode(token, ENV["DEVISE_SECRET_KEY"], true, algorithm: "HS256")
+      @current_user = User.find(decoded_token.first["sub"])
+    else
+      render json: { error: "User must be authenticated" }, status: :unauthorized
+    end
+
   end
 
   private
