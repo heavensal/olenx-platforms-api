@@ -4,6 +4,8 @@ class Api::V1::Me::PortfoliosController < ApplicationController
 
   def show
     @portfolio = @current_user.portfolio
+    @projects = @portfolio.projects.order(id: :asc)
+    @ideas = @portfolio.ideas.order(updated_at: :desc)
   end
 
   def update

@@ -11,7 +11,7 @@ json.portfolio do
     json.email @portfolio.user.email
   end
 
-  json.projects @portfolio.projects do |project|
+  json.projects @projects do |project|
     json.id project.id
     json.title project.title
     json.description project.description
@@ -19,7 +19,7 @@ json.portfolio do
     json.avatar project.avatar.url
   end
 
-  json.ideas @portfolio.ideas do |idea|
+  json.ideas @ideas do |idea|
     json.id idea.id
     json.title idea.title
     json.description idea.description

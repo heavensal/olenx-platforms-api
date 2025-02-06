@@ -37,7 +37,7 @@ class Api::V1::Me::IdeasController < ApplicationController
   private
 
   def set_idea
-    @idea = @current_user.ideas.find(params[:id]).with_attached_avatar
+    @idea = @current_user.ideas.find(params[:id])
   end
 
   def idea_params
