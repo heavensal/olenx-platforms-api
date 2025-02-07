@@ -1,8 +1,7 @@
 class Portfolio < ApplicationRecord
   require "rqrcode"
 
-  BASE_URL = "https://www.olenxplatforms.com" if Rails.env.production?
-  BASE_URL = "http://localhost:3000" if Rails.env.development?
+  BASE_URL = "https://www.olenxplatforms.com/portfolios"
 
   has_one_attached :avatar
   has_one_attached :qr_code
@@ -13,6 +12,10 @@ class Portfolio < ApplicationRecord
   has_many :ideas
 
   after_create :create_my_qr_code
+  # before_destroy :purge_qr_code
+  # before_destroy :purge_avatar
+
+
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[company_name description]
@@ -26,7 +29,7 @@ class Portfolio < ApplicationRecord
     if self.qr_code.attached?
       self.qr_code.purge
     end
-    qr = RQRCode::QRCode.new("#{BASE_URL}/portfolios/#{self.id}")
+    qr = RQRCode::QRCode.new("#{BASE_URL}/#{self.id}")
     png = qr.as_png(
       bit_depth: 1,
       border_modules: 0,
