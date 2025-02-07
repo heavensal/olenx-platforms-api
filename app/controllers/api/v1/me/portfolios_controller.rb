@@ -23,6 +23,6 @@ class Api::V1::Me::PortfoliosController < ApplicationController
   end
 
   def portfolio_params
-    params.permit(:company_name, :description, :avatar)
+    params.require(:portfolio).permit(:company_name, :description, :avatar)
   end
 end
