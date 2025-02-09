@@ -3,5 +3,5 @@ json.array! @projects do |project|
   json.title project.title
   json.description project.description
   json.updated_at project.updated_at
-  json.avatar project.avatar.url
+  json.avatar project.avatar
 end

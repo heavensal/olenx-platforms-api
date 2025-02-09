@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :ideas, dependent: :destroy
   has_many :projects, dependent: :destroy
   has_many :reactions, dependent: :destroy
-  has_many :qr_codes, dependent: :destroy
   has_one :portfolio, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true

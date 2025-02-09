@@ -6,15 +6,15 @@ class Api::V1::ProjectsController < ApplicationController
     params.permit(q: {})
 
     if @portfolio
-      @projects = @portfolio.projects.with_attached_avatar
+      @projects = @portfolio.projects
     else
       @q = Project.ransack(params[:q])
-      @projects = @q.result(distinct: true).with_attached_avatar
+      @projects = @q.result(distinct: true)
     end
   end
 
   def show
-    @project = @portfolio ? @portfolio.projects.with_attached_avatar.find(params[:id]) : Project.with_attached_avatar.find(params[:id])
+    @project = @portfolio ? @portfolio.projects.find(params[:id]) : Project.find(params[:id])
   end
 
   private

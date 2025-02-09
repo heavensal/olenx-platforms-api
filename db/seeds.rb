@@ -30,8 +30,6 @@ puts "Portfolio: #{portfolio.company_name}"
     portfolio: portfolio,
     user: user
   )
-  avatar_url = Faker::Avatar.image(size: "50x50", format: "jpg")
-  project.avatar.attach(io: URI.open(avatar_url), filename: "#{project.title}.jpg", content_type: "image/jpg")
   project.save!
   puts "Project: #{project.title} created !"
 end
@@ -44,8 +42,6 @@ end
     portfolio: portfolio,
     user: user
   )
-  avatar_url = Faker::Avatar.image(size: "50x50", format: "jpg")
-  idea.avatar.attach(io: URI.open(avatar_url), filename: "#{idea.title}.jpg", content_type: "image/jpg")
   idea.save!
   puts "Idea: #{idea.title} created !"
 end

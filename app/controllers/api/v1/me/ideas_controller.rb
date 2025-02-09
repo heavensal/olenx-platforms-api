@@ -3,7 +3,7 @@ class Api::V1::Me::IdeasController < ApplicationController
   before_action :set_idea, only: [ :show, :update, :destroy ]
 
   def index
-    @ideas = @current_user.ideas.with_attached_avatar
+    @ideas = @current_user.ideas
   end
 
   def create

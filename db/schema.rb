@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_04_020805) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_09_015535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,6 +49,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_04_020805) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.bigint "portfolio_id", null: false
+    t.text "content"
+    t.string "avatar"
     t.index ["portfolio_id"], name: "index_ideas_on_portfolio_id"
     t.index ["user_id"], name: "index_ideas_on_user_id"
   end
@@ -67,6 +69,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_04_020805) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
@@ -77,19 +80,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_04_020805) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.bigint "portfolio_id", null: false
+    t.text "content"
+    t.string "avatar"
     t.index ["portfolio_id"], name: "index_projects_on_portfolio_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
-  end
-
-  create_table "qr_codes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "portfolio_id", null: false
-    t.text "svg", null: false
-    t.integer "views", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["portfolio_id"], name: "index_qr_codes_on_portfolio_id"
-    t.index ["user_id"], name: "index_qr_codes_on_user_id"
   end
 
   create_table "reactions", force: :cascade do |t|
@@ -251,8 +245,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_04_020805) do
   add_foreign_key "portfolios", "users"
   add_foreign_key "projects", "portfolios"
   add_foreign_key "projects", "users"
-  add_foreign_key "qr_codes", "portfolios"
-  add_foreign_key "qr_codes", "users"
   add_foreign_key "reactions", "ideas"
   add_foreign_key "reactions", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

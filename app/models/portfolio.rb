@@ -3,7 +3,6 @@ class Portfolio < ApplicationRecord
 
   BASE_URL = "https://www.olenxplatforms.com/portfolios"
 
-  has_one_attached :avatar
   has_one_attached :qr_code
 
   belongs_to :user
@@ -12,8 +11,6 @@ class Portfolio < ApplicationRecord
   has_many :ideas
 
   after_create :create_my_qr_code
-  # before_destroy :purge_qr_code
-  # before_destroy :purge_avatar
 
 
 

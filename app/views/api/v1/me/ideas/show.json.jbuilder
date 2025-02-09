@@ -4,7 +4,7 @@ json.idea do
   json.title @idea.title
   json.description @idea.description
   json.updated_at @idea.updated_at
-  json.avatar @idea.avatar.url
+  json.avatar @idea.avatar
   json.reactions do
     json.likes @idea.likes_count
     json.dislikes @idea.dislikes_count

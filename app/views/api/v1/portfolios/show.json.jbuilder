@@ -3,7 +3,7 @@ json.portfolio do
   json.id @portfolio.id
   json.company_name @portfolio.company_name
   json.description @portfolio.description
-  json.avatar @portfolio.avatar.url
+  json.avatar @portfolio.avatar
   json.qr_code @portfolio.qr_code.url
 
   json.user do
@@ -16,7 +16,7 @@ json.portfolio do
     json.title project.title
     json.description project.description
     json.updated_at project.updated_at
-    json.avatar project.avatar.url
+    json.avatar project.avatar
   end
 
   json.ideas @portfolio.ideas do |idea|
@@ -24,7 +24,7 @@ json.portfolio do
     json.title idea.title
     json.description idea.description
     json.updated_at idea.updated_at
-    json.avatar idea.avatar.url
+    json.avatar idea.avatar
   end
 
 end
