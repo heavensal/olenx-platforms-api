@@ -11,14 +11,10 @@ json.array! @ideas do |idea|
   end
 
   if @current_user
-    reaction = idea.reactions.find_by(user_id: current_user.id)
+    reaction = idea.reactions.find_by(user_id: @current_user.id) # Correction ici
 
     json.me do
-      if reaction
-        json.reaction_type reaction.reaction_type
-      else
-        json.reaction_type nil
-      end
+      json.reaction_type reaction&.reaction_type # Utilisation du safe navigation operator
     end
   end
 
