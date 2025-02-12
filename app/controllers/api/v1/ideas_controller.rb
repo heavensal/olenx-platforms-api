@@ -15,6 +15,9 @@ class Api::V1::IdeasController < ApplicationController
 
   def show
     @idea = @portfolio ? @portfolio.ideas.find(params[:id]) : Idea.find(params[:id])
+    if @current_user
+      @reaction = @idea.reactions.find_by(user_id: @current_user.id)
+    end
   end
 
   private

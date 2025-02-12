@@ -19,6 +19,7 @@ class Api::V1::Me::IdeasController < ApplicationController
   end
 
   def show
+    @reaction = @idea.reactions.find_by(user_id: @current_user.id)
   end
 
   def update
