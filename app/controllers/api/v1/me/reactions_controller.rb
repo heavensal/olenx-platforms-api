@@ -10,6 +10,16 @@ class Api::V1::Me::ReactionsController < ApplicationController
     end
   end
 
+  def show
+    @idea = Idea.find(params[:id])
+    @reaction = @current_user.reactions.find_by(idea_id: @idea.id)
+    if @reaction
+      render :show, status: :ok
+    else
+      render json: { error: "No reaction found" }, status: :not_found
+    end
+  end
+
   def update
     if @reaction.update(reaction_params)
       render :show, status: :ok

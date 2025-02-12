@@ -11,16 +11,3 @@ json.idea do
   end
 
 end
-
-
-
-
-
-
-
-
-# title
-# description
-# user_id
-# updated_at
-# idea.reactions

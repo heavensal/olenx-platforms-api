@@ -33,7 +33,7 @@ Rails.application.routes.draw do
         end
 
         # Current user's reactions to ideas
-        resources :reactions, only: [ :create, :update, :destroy ]
+        resources :reactions, only: [ :create, :show, :update, :destroy ]
 
       end
 
