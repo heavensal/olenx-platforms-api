@@ -10,8 +10,10 @@ json.idea do
     json.dislikes @idea.dislikes_count
   end
 
-  json.me do
-    json.reaction_type @reaction.reaction_type
+  if @current_user
+    json.me do
+      json.reaction_type @reaction&.reaction_type
+    end
   end
 
 end
