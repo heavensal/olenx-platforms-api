@@ -1,5 +1,6 @@
 class Api::V1::IdeasController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :set_current_user, only: [ :index, :show ]
   before_action :set_portfolio, only: [ :index, :show ]
 
   def index
